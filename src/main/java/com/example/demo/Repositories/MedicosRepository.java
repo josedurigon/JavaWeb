@@ -13,5 +13,4 @@ public interface MedicosRepository extends MongoRepository<Medicos, Long> {
 
     Medicos save (Medicos medico);
 
-    Medicos update (Medicos medico);
 }
