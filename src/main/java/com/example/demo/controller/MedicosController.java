@@ -1,4 +1,4 @@
-package com.example.demo.Medicos;
+package com.example.demo.controller;
 
 
 import com.example.demo.Models.Medicos;
