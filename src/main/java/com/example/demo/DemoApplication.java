@@ -12,8 +12,5 @@ public class DemoApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DemoApplication.class, args);
-		Socket socket = new Socket("localhost", 8088);
-		Client client = new Client(socket);
-		client.sendObject();
 	}
 }

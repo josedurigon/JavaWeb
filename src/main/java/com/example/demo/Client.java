@@ -1,15 +1,14 @@
 package com.example.demo;
 
 import com.example.demo.Models.Pacientes;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.Socket;
 
+@Component
 public class Client {
     private Socket socket;
-
-
-
     private ObjectInput objectInput;
     private ObjectOutputStream objectOutputStream;
     Pacientes paciente;
@@ -25,9 +24,10 @@ public class Client {
         }
     }
 
-    public void sendObject() {
+    public void sendObject(Pacientes paciente) {
         try {
             if (paciente != null) {
+
                 objectOutputStream.writeObject(paciente);
                 objectOutputStream.flush();
                 System.out.println("Pacientes object sent to the server");
