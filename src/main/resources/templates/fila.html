@@ -1,78 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Queue Visualization</title>
+    <title>Fila de Atendimento</title>
     <style>
-        /* Add your custom styles here if needed */
-        .queue-item {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
+        :root {
+            --verde-principal: #006400;
+            --branco-secundario: #ffffff;
+            --verde-secundario: #009000;
+            --azul-principal: #4169e1;
+            --azul-secundario: blue;
+        }
+
+        body {
+            /* Estilos do body */
+            background-image: url(imagem/A\ bright\ hospit\ 678b1c70-47e6-4676-bb1f-2d2f2a7aec2b.png);
+            /* Substitua pelo caminho da sua imagem */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            opacity: 85%;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .navbar {
+            /* Estilos do navbar */
+            overflow: hidden;
+            padding-left: 70%;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
             text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: larger;
+        }
+
+        .navbar a:hover {
+            color: orange;
+        }
+
+        #header {
+            /* Estilos do header */
+            color: var(--branco-secundario);
+            background-color: var(--azul-secundario);
+            opacity: 0.8;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 40px;
+            padding-right: 20px;
+            display: flex;
+        }
+
+        .container {
+            /* Estilos do container principal */
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        .title-container {
+            /* Estilos do container do título */
+            background-color:#2e55cc; ;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .title {
+            /* Estilos do título */
+            color: var(--branco-secundario);
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .position-square {
+            /* Estilos do quadrado de posição */
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #ffffff;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .content {
+            /* Estilos do conteúdo */
+            text-align: center;
+            color: black;
+        }
+
+        .aviso {
+            /* Estilos do aviso */
+            background-color: #ffcccc;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .span{
+            color: black;
         }
     </style>
 </head>
-<body class="container">
 
-<h1 class="mt-4">Queue Visualization</h1>
-
-<div class="row mt-4">
-    <div class="col-md-4"></div> <!-- Placeholder for alignment -->
-    <div class="col-md-4">
-        <div id="queue-container">
-            <!-- Queue items will be dynamically added here -->
-        </div>
+<body>
+<header id="header">
+    <h1>MEGAMED</h1>
+    <div class="navbar">
+        <a href="#contato">Contato</a>
+        <a href="#sobreNos">Sobre Nós</a>
     </div>
-    <div class="col-md-4"></div> <!-- Placeholder for alignment -->
+</header>
+
+<div class="title-container">
+    <h1 class="title">FILA DE ATENDIMENTO</h1>
 </div>
 
-<div class="row mt-4">
-    <div class="col-md-4"></div> <!-- Placeholder for alignment -->
-    <div class="col-md-4">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="queueInput" placeholder="Enter item">
-            <button class="btn btn-primary" onclick="enqueue()">Enqueue</button>
+<div class="container">
+    <div class="content">
+        <h1>Posição na Fila</h1>
+        <p>Sua posição na fila é:
+            <span class="position-square" th:text="${posicaoNaFila}" style="color:black;"></span>
+        </p>
+        <p>Tempo de espera estimado: <span th:text="${tempoEspera}" ></span> Minutos</p>
+
+
+        <br><br><br><br>
+        <div class="aviso">
+            <p><strong>Aviso!:</strong> Será tolerado um atraso de no máximo 5 minutos. É recomendado que você se dirija ao hospital com antecedência para garantir seu atendimento.</p>
         </div>
-        <button class="btn btn-danger" onclick="dequeue()">Dequeue</button>
+
     </div>
-    <div class="col-md-4"></div> <!-- Placeholder for alignment -->
 </div>
 
-<script>
-    // Simple queue implementation
-    const queue = [];
-
-    function enqueue() {
-        const inputValue = document.getElementById('queueInput').value;
-        if (inputValue) {
-            queue.push(inputValue);
-            displayQueue();
-        }
-    }
-
-    function dequeue() {
-        if (queue.length > 0) {
-            queue.shift();
-            displayQueue();
-        }
-    }
-
-    function displayQueue() {
-        const queueContainer = document.getElementById('queue-container');
-        queueContainer.innerHTML = '';
-
-        for (let i = 0; i < queue.length; i++) {
-            const queueItem = document.createElement('div');
-            queueItem.className = 'queue-item';
-            queueItem.textContent = queue[i];
-            queueContainer.appendChild(queueItem);
-        }
-    }
-</script>
-
+<!-- scripts, JavaScript, etc. -->
 </body>
+
 </html>

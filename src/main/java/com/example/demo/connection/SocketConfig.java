@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.connection;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +13,7 @@ public class SocketConfig {
     public Socket socket() {
         try {
             return new Socket("localhost", 8088);  // Adjust the host and port accordingly
+
         } catch (IOException e) {
             throw new RuntimeException("Error creating Socket bean", e);
         }

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>MEGAMED</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        :root {
+            --verde-principal: #006400;
+            --branco-secundario: #ffffff;
+            --verde-secundario: #009000;
+            --azul-principal: #4169e1;
+            --azul-secundario: blue;
+        }
+
+        body {
+            background-image: url(static/Hospital.png);
+            opacity: 85%;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .navbar {
+            /* background-color: #333; */
+            overflow: hidden;
+            padding-left: 70%;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: larger;
+        }
+
+        .navbar a:hover {
+            /* background-color: #ddd; */
+            color: orange;
+
+        }
+
+        #header {
+            color: var(--branco-secundario);
+            background-color: var(--azul-secundario);
+            opacity: 0.8;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 40px;
+            padding-right: 20px;
+            display: flex;
+        }
+
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+
+            margin: 50px;
+            padding: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+        }
+
+        .lista {
+            padding: 30px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            opacity: 100%
+        }
+
+        .list-item {
+            padding: 10px;
+            text-align: left;
+            /* text-transform: uppercase; */
+        }
+
+        .containerForm {
+            max-width: 800px;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 100%;
+
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        /* input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+} */
+
+        input[type="submit"]:hover {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+        }
+
+
+
+        .button-container {
+            margin-top: 50px;
+            text-align: center;
+            padding: 10px;
+            opacity: 85%;
+        }
+
+        .send-button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bolder;
+            padding-left: 10px;
+            text-transform: uppercase;
+            text-align: center;
+            display: inline-block;
+            padding-left: 2.5%;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            border-color: #ccc;
+            color: #555;
+            cursor: not-allowed;
+        }
+    </style>
+
+</head>
+
+<body>
+<header id="header">
+    <h1>MEGAMED</h1>
+
+    <div class="navbar">
+        <a href="#contato">Contato</a>
+        <a href="#sobreNos">Sobre Nós</a>
+    </div>
+</header>
+<div class="container">
+
+    <ul class="lista" style="list-style-type: none;">
+        <h1>SINTOMAS GRAVES</h1>
+        <br>
+        <h3>Atenção: Caso esteja sentindo qualquer sintoma a seguir, dirija-se imediatamente ao hospital</h3>
+        <br>
+        <li class="list-item">• Convulsões</li>
+        <li class="list-item">• Dificuldade Respiratória Severa</li>
+        <li class="list-item">• Dor Abdominal Intensa</li>
+        <li class="list-item">• Dor no Braço Esquerdo</li>
+        <li class="list-item">• Dor no Peito</li>
+        <li class="list-item">• Falta de Ar</li>
+        <li class="list-item">• Perda de Consciencia ou Desmaio</li>
+        <li class="list-item">• Reações Alérgicas Graves</li>
+        <li class="list-item">• Sangramento Intenso</li>
+    </ul>
+</div>
+
+
+<div class="containerForm">
+    <!--Caso opte por um único retangulo  -->
+    <!-- <ul class="lista" style="list-style-type: none;">
+        <h1>SINTOMAS GRAVES</h1>
+        <br>
+        <h3>Atenção: Caso esteja sentindo qualquer sintoma a seguir, dirija-se imediatamente ao hospital</h3>
+        <br>
+        <li class="list-item">Convulsões</li>
+        <li class="list-item">Dificuldade Respiratória Severa</li>
+        <li class="list-item">Dor Abdominal Intensa</li>
+        <li class="list-item">Dor no Braço Esquerdo</li>
+        <li class="list-item">Dor no Peito</li>
+        <li class="list-item">Falta de Ar</li>
+        <li class="list-item">Perda de Consciencia ou Desmaio</li>
+        <li class="list-item">Reações Alérgicas Graves</li>
+        <li class="list-item">Sangramento Intenso</li>
+    </ul>
+    <br>
+    <br> -->
+
+
+    <h1>Formulário Para Entrada Remota Na Fila</h1>
+    <br>
+    <!-- <p>Digite seus dados corretamente.</p> -->
+    <form th:action="@{/register}" th:method="post" th:object="${pacientes}">
+        <input type="text" name="nome" placeholder="Nome" required th:field="*{nome}">
+        <input type="text" name="contato" placeholder="Contato" required th:field="*{contato}">
+        <input type="text" name="endereco" placeholder="Endereço" required th:field="*{endereco}">
+        <input type="text" name="historico" placeholder="Histórico Médico" required th:field="*{historico_medico}">
+        <!-- <input type="submit" value="Submit"> -->
+        <div class="button-container">
+            <input class="check" type="checkbox" id="checkbox"> Declaro que não estou sentindo nenhum dos sintomas
+            citados
+
+            <button type="submit" class="send-button" id="button" disabled>Enviar</button> <br>
+            <a href="/Fila">Verificar minha posição na fila</a>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+    document.getElementById('checkbox').addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById('button').disabled = false;
+        } else {
+            document.getElementById('button').disabled = true;
+        }
+    });
+
+    document.getElementById('button').addEventListener('click', function () {
+        alert('Sua posição foi registrada na fila!');
+    });
+
+</script>
+
+</body>
+
+</html>
